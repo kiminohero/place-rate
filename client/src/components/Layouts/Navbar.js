@@ -29,10 +29,10 @@ class Navbar extends Component {
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="#">
-                    Create
+                    Add
                   </a>
                 </li>
-                <li class="nav-item">
+                {/* <li class="nav-item">
                   <a class="nav-link" href="#">
                     Edit
                   </a>
@@ -41,7 +41,7 @@ class Navbar extends Component {
                   <a class="nav-link" href="#">
                     Delete
                   </a>
-                </li>
+                </li> */}
               </ul>
               {/* <form class="form-inline my-2 my-lg-0">
                 <input

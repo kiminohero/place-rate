@@ -18,8 +18,11 @@
     "nodemon": "^1.18.10"
   },
   "scripts": {
-    "dev": "nodemon server.js",
-    "start": "node server.js"
+    "client-install": "npm i --prefix client",
+    "start": "node server.js",
+    "server": "nodemon server.js",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "author": "",
   "license": "ISC"

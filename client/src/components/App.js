@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import ListPlace from './Place/ListPlace';
 import Navbar from './Layouts/Navbar';
@@ -19,12 +20,14 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        <Navbar />
-        <Landing />
-        {/* <button onClick={this.handleClick}>Get Current Logged In user</button> */}
-        <Footer />
-      </div>
+      <Router>
+        <div className="App">
+          <Navbar />
+          <Route exact path="/" component={Landing} />
+          {/* <button onClick={this.handleClick}>Get Current Logged In user</button> */}
+          <Footer />
+        </div>
+      </Router>
     );
   }
 }
