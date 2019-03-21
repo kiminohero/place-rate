@@ -1,5 +1,9 @@
 import React from 'react';
 
 export default function Footer() {
-  return <div>Footer</div>;
+  return (
+    <footer className="bg-dark text-white mt-1 p-4 text-center">
+      Copyright &copy; {new Date().getFullYear()} AdvenFinder
+    </footer>
+  );
 }

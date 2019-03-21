@@ -1,0 +1,15 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.landing {
+  background-image: url(https://s3.amazonaws.com/renter-blog-assets/blog/wp-content/uploads/2018/08/27111730/Outdoors-Cities.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100vh;
+  padding-top: 70px;
+}

@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import ListPlace from './Place/ListPlace';
-import Header from './Layouts/Header';
+import Navbar from './Layouts/Navbar';
 import Footer from './Layouts/Footer';
 import { currentUser, login } from '../actions/index';
 import { lstat } from 'fs';
+import Landing from './Layouts/Landing';
 
 class App extends Component {
   componentDidMount() {
@@ -19,9 +20,9 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Header />
-        <ListPlace />
-        <button onClick={this.handleClick}>Get Current Logged In user</button>
+        <Navbar />
+        <Landing />
+        {/* <button onClick={this.handleClick}>Get Current Logged In user</button> */}
         <Footer />
       </div>
     );
