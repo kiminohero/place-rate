@@ -154,4 +154,58 @@ module.exports = app => {
       });
     }
   );
+
+  // @route     /post/comment/:id
+  // @desc      Add a comment to a post
+  // @access    Private
+  app.post(
+    '/post/comment/:id',
+    passport.authenticate('jwt', { session: false }),
+    (req, res) => {
+      Post.findById(req.params.id)
+        .then(post => {
+          const newComment = {
+            text: req.body.text,
+            user: req.user.id
+          };
+
+          // Add to comments array
+          post.comments.unshift(newComment);
+
+          post.save().then(post => res.json(post));
+        })
+        .catch(err => res.status(404).json({ nopost: 'Post not found' }));
+    }
+  );
+
+  // @route     /post/comment/:id/:comm_id
+  // @desc      Delete a comment
+  // @access    Private
+  app.delete(
+    '/post/comment/:id/:comm_id',
+    passport.authenticate('jwt', { session: false }),
+    (req, res) => {
+      Post.findById(req.params.id)
+        .then(post => {
+          if (
+            post.comments.filter(
+              comment => comment._id.toString() === req.params.comm_id
+            ).length === 0
+          ) {
+            return res.status(404).json({ nocomment: 'No comment exists' });
+          }
+          const removeIndex = post.comments
+            .map(item => item._id.toString())
+            .indexOf(req.params.comm_id);
+
+          post.comments.splice(removeIndex, 1);
+
+          post
+            .save()
+            .then(post => res.json(post))
+            .catch(err => console.log(err));
+        })
+        .catch(err => res.status(404).json({ nopost: 'Post not found' }));
+    }
+  );
 };
