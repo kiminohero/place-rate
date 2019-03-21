@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 class Navbar extends Component {
   render() {
     return (
       <div>
-        <nav class="navbar navbar-expand-sm navbar-dark bg-primary">
+        <nav className="navbar navbar-expand-sm navbar-dark bg-primary">
           <div className="container">
-            <a class="navbar-brand" href="#">
+            <Link className="navbar-brand" to="/">
               AdvenFinder
-            </a>
+            </Link>
             <button
-              class="navbar-toggler"
+              className="navbar-toggler"
               type="button"
               data-toggle="collapse"
               data-target="#navbarSupportedContent"
@@ -18,40 +19,43 @@ class Navbar extends Component {
               aria-expanded="false"
               aria-label="Toggle navigation"
             >
-              <span class="navbar-toggler-icon" />
+              <span className="navbar-toggler-icon" />
             </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                  <a class="nav-link" href="#">
-                    Home <span class="sr-only">(current)</span>
-                  </a>
+            <div
+              className="collapse navbar-collapse"
+              id="navbarSupportedContent"
+            >
+              <ul className="navbar-nav mr-auto">
+                <li className="nav-item active">
+                  <Link className="nav-link" to="/">
+                    Home <span className="sr-only">(current)</span>
+                  </Link>
                 </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#">
+                <li className="nav-item">
+                  <Link className="nav-link" to="/place/new">
                     Add
-                  </a>
+                  </Link>
                 </li>
-                {/* <li class="nav-item">
-                  <a class="nav-link" href="#">
+                {/* <li className="nav-item">
+                  <a className="nav-link" href="#">
                     Edit
                   </a>
                 </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#">
+                <li className="nav-item">
+                  <a className="nav-link" href="#">
                     Delete
                   </a>
                 </li> */}
               </ul>
-              {/* <form class="form-inline my-2 my-lg-0">
+              {/* <form className="form-inline my-2 my-lg-0">
                 <input
-                  class="form-control mr-sm-2"
+                  className="form-control mr-sm-2"
                   type="search"
                   placeholder="Search"
                   aria-label="Search"
                 />
                 <button
-                  class="btn btn-outline-success my-2 my-sm-0"
+                  className="btn btn-outline-success my-2 my-sm-0"
                   type="submit"
                 >
                   Search
@@ -59,14 +63,14 @@ class Navbar extends Component {
               </form> */}
               <ul className="navbar-nav ml-auto">
                 <li className="nav-item">
-                  <a href="#" className="nav-link">
+                  <Link className="nav-link" to="/register">
                     Sign Up
-                  </a>
+                  </Link>
                 </li>
                 <li className="nav-item">
-                  <a href="#" className="nav-link">
+                  <Link to="/login" className="nav-link">
                     Login
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>

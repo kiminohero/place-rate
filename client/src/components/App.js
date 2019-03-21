@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { lstat } from 'fs';
+
+import { currentUser, login } from '../actions/index';
 
 import ListPlace from './Place/ListPlace';
 import Navbar from './Layouts/Navbar';
 import Footer from './Layouts/Footer';
-import { currentUser, login } from '../actions/index';
-import { lstat } from 'fs';
 import Landing from './Layouts/Landing';
+import Register from './Auth/Register';
+import Login from './Auth/Login';
 
 class App extends Component {
   componentDidMount() {
@@ -24,6 +27,10 @@ class App extends Component {
         <div className="App">
           <Navbar />
           <Route exact path="/" component={Landing} />
+          <div className="container">
+            <Route exact path="/register" component={Register} />
+            <Route exact path="/login" component={Login} />
+          </div>
           {/* <button onClick={this.handleClick}>Get Current Logged In user</button> */}
           <Footer />
         </div>

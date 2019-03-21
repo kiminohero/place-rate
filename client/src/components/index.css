@@ -12,4 +12,5 @@ body {
   background-repeat: no-repeat;
   height: 100vh;
   padding-top: 70px;
+  /* filter: blur(-2px); */
 }

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import '../index.css';
 
 class Landing extends Component {
@@ -15,12 +16,12 @@ class Landing extends Component {
                   adventurers
                 </p>
                 <hr />
-                <a href="#" className="btn btn-lg btn-info mr-2">
+                <Link to="/register" className="btn btn-lg btn-info mr-2">
                   Sign Up
-                </a>
-                <a href="#" className="btn btn-lg btn-light">
+                </Link>
+                <Link href="/login" className="btn btn-lg btn-light">
                   Login
-                </a>
+                </Link>
               </div>
             </div>
           </div>
