@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import axios from "axios";
+import classnames from "classnames";
 
 class Login extends Component {
   constructor() {
@@ -17,6 +19,11 @@ class Login extends Component {
       password: this.state.password
     };
     console.log(User);
+
+    axios
+      .post("/auth/login", User)
+      .then(res => console.log(res))
+      .catch(err => this.setState({ errors: err.response.data }));
   };
 
   onChange = e => {
@@ -24,6 +31,8 @@ class Login extends Component {
   };
 
   render() {
+    const { errors } = this.state;
+
     return (
       <div className="login">
         <div className="container">
@@ -37,22 +46,32 @@ class Login extends Component {
                 <div className="form-group">
                   <input
                     type="text"
-                    className="form-control form-control-lg"
+                    className={classnames("form-control form-control-lg", {
+                      "is-invalid": errors.username
+                    })}
                     placeholder="Username"
                     name="username"
                     value={this.state.username}
                     onChange={this.onChange}
                   />
+                  {errors.username && (
+                    <div className="invalid-feedback">{errors.username}</div>
+                  )}
                 </div>
                 <div className="form-group">
                   <input
                     type="password"
-                    className="form-control form-control-lg"
+                    className={classnames("form-control form-control-lg", {
+                      "is-invalid": errors.password
+                    })}
                     placeholder="Password"
                     name="password"
                     value={this.state.password}
                     onChange={this.onChange}
                   />
+                  {errors.password && (
+                    <div className="invalid-feedback">{errors.password}</div>
+                  )}
                 </div>
                 <input type="submit" className="btn btn-info btn-block mt-4" />
               </form>

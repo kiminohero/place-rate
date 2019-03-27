@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import classnames from "classnames";
 
 class Register extends Component {
   constructor() {
@@ -36,12 +37,17 @@ class Register extends Component {
 
     axios
       .post("/auth/register", newUser)
-      .then(res => console.log(res))
-      .catch(err => console.log(err.response.data));
+      .then(res => {
+        console.log(res);
+        // this.setState({ errors: {} });
+      })
+      .catch(err => this.setState({ errors: err.response.data }));
     // console.log(res);
   };
 
   render() {
+    const { errors } = this.state;
+
     return (
       <div>
         <div className="register">
@@ -50,16 +56,21 @@ class Register extends Component {
               <div className="col-md-8 m-auto">
                 <h1 className="display-4 text-center">Sign Up</h1>
                 <p className="lead text-center">Create your Account</p>
-                <form onSubmit={this.onSubmit}>
+                <form noValidate onSubmit={this.onSubmit}>
                   <div className="form-group">
                     <input
                       placeholder="First Name"
                       name="firstname"
                       type="text"
                       value={this.state.firstname}
-                      className="form-control form-control-lg"
+                      className={classnames("form-control form-control-lg", {
+                        "is-invalid": errors.firstname
+                      })}
                       onChange={this.onChange}
                     />
+                    {errors.firstname && (
+                      <div className="invalid-feedback">{errors.firstname}</div>
+                    )}
                   </div>
                   <div className="form-group">
                     <input
@@ -67,9 +78,14 @@ class Register extends Component {
                       name="lastname"
                       type="text"
                       value={this.state.lastname}
-                      className="form-control form-control-lg"
+                      className={classnames("form-control form-control-lg", {
+                        "is-invalid": errors.lastname
+                      })}
                       onChange={this.onChange}
                     />
+                    {errors.lastname && (
+                      <div className="invalid-feedback">{errors.lastname}</div>
+                    )}
                   </div>
                   <div className="form-group">
                     <input
@@ -77,9 +93,14 @@ class Register extends Component {
                       name="username"
                       type="text"
                       value={this.state.username}
-                      className="form-control form-control-lg"
+                      className={classnames("form-control form-control-lg", {
+                        "is-invalid": errors.username
+                      })}
                       onChange={this.onChange}
                     />
+                    {errors.username && (
+                      <div className="invalid-feedback">{errors.username}</div>
+                    )}
                   </div>
                   <div className="form-group">
                     <input
@@ -88,8 +109,13 @@ class Register extends Component {
                       type="email"
                       value={this.state.email}
                       onChange={this.onChange}
-                      className="form-control form-control-lg"
+                      className={classnames("form-control form-control-lg", {
+                        "is-invalid": errors.email
+                      })}
                     />
+                    {errors.email && (
+                      <div className="invalid-feedback">{errors.email}</div>
+                    )}
                   </div>
                   <div className="form-group">
                     <input
@@ -98,8 +124,13 @@ class Register extends Component {
                       type="password"
                       onChange={this.onChange}
                       value={this.state.password}
-                      className="form-control form-control-lg"
+                      className={classnames("form-control form-control-lg", {
+                        "is-invalid": errors.password
+                      })}
                     />
+                    {errors.password && (
+                      <div className="invalid-feedback">{errors.password}</div>
+                    )}
                   </div>
                   <div className="form-group">
                     <input
@@ -108,8 +139,13 @@ class Register extends Component {
                       type="password"
                       onChange={this.onChange}
                       value={this.state.password2}
-                      className="form-control form-control-lg"
+                      className={classnames("form-control form-control-lg", {
+                        "is-invalid": errors.password2
+                      })}
                     />
+                    {errors.password2 && (
+                      <div className="invalid-feedback">{errors.password2}</div>
+                    )}
                   </div>
                   <input
                     type="submit"
