@@ -1,26 +1,36 @@
-const User = require('../../models/User');
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
+const User = require("../../models/User");
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+
+// Load Input Validation
+
+const validateRegister = require("../../validation/register");
 
 module.exports = app => {
   // @route   GET api/auth/test
   // @desc    Tests auth route
   // @access  Public
-  app.get('/auth/test', (req, res) => {
+  app.get("/auth/test", (req, res) => {
     res.json({
-      message: 'Wokring Properly'
+      message: "Wokring Properly"
     });
   });
 
   // @route   POST api/auth/register
   // @desc    Register user
   // @access  Public
-  app.post('/auth/register', (req, res) => {
+  app.post("/auth/register", (req, res) => {
+    const { errors, isValid } = validateRegister(req.body);
+
+    // CHECK VAlidation
+    if (!isValid) {
+      res.status(400).json(errors);
+    }
+
     User.findOne({ username: req.body.username }).then(user => {
       if (user) {
-        return res.status(400).json({
-          username: 'username already exits'
-        });
+        errors.username = "username already exits";
+        return res.status(400).json(errors);
       } else {
         const newUser = new User({
           firstname: req.body.firstname,
@@ -48,7 +58,7 @@ module.exports = app => {
   // @route   POST api/auth/login
   // @desc    Login User
   // @access  Public
-  app.post('/auth/login', (req, res) => {
+  app.post("/auth/login", (req, res) => {
     const username = req.body.username;
     const password = req.body.password;
 
@@ -76,7 +86,7 @@ module.exports = app => {
             (err, token) => {
               res.json({
                 success: true,
-                token: 'Bearer ' + token
+                token: "Bearer " + token
               });
             }
           );
@@ -84,7 +94,7 @@ module.exports = app => {
           // Password doesn't match
           return res
             .status(400)
-            .json({ password: 'The password is incorrect' });
+            .json({ password: "The password is incorrect" });
         }
       });
     });

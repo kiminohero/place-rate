@@ -28,9 +28,10 @@ class Register extends Component {
       lastname: this.state.lastname,
       username: this.state.username,
       email: this.state.email,
-      password: this.state.password
-      // password2: this.state.password2
+      password: this.state.password,
+      password2: this.state.password2
     };
+
     console.log(newUser);
 
     axios
