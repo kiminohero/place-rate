@@ -1,13 +1,16 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
+import axios from "axios";
 
 class Register extends Component {
   constructor() {
     super();
     this.state = {
-      name: '',
-      email: '',
-      password: '',
-      password2: '',
+      firstname: "",
+      lastname: "",
+      username: "",
+      email: "",
+      password: "",
+      password2: "",
       errors: {}
     };
   }
@@ -18,15 +21,23 @@ class Register extends Component {
     });
   };
 
-  onSubmit = e => {
+  onSubmit = async e => {
     e.preventDefault();
     const newUser = {
-      name: this.state.name,
+      firstname: this.state.firstname,
+      lastname: this.state.lastname,
+      username: this.state.username,
       email: this.state.email,
-      password: this.state.password,
-      password2: this.state.password2
+      password: this.state.password
+      // password2: this.state.password2
     };
     console.log(newUser);
+
+    axios
+      .post("/auth/register", newUser)
+      .then(res => console.log(res))
+      .catch(err => console.log(err.response.data));
+    // console.log(res);
   };
 
   render() {
@@ -41,10 +52,30 @@ class Register extends Component {
                 <form onSubmit={this.onSubmit}>
                   <div className="form-group">
                     <input
-                      placeholder="Name"
-                      name="name"
+                      placeholder="First Name"
+                      name="firstname"
                       type="text"
-                      value={this.state.name}
+                      value={this.state.firstname}
+                      className="form-control form-control-lg"
+                      onChange={this.onChange}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <input
+                      placeholder="Last Name"
+                      name="lastname"
+                      type="text"
+                      value={this.state.lastname}
+                      className="form-control form-control-lg"
+                      onChange={this.onChange}
+                    />
+                  </div>
+                  <div className="form-group">
+                    <input
+                      placeholder="Username"
+                      name="username"
+                      type="text"
+                      value={this.state.username}
                       className="form-control form-control-lg"
                       onChange={this.onChange}
                     />

@@ -1,9 +1,9 @@
-import { CURRENT_USER, LOGIN_USER } from './types';
-import axios from 'axios';
+import { CURRENT_USER, LOGIN_USER } from "./types";
+import axios from "axios";
 
 // Action Creater1
 export const currentUser = token => async dispatch => {
-  const response = await axios.get('/user/curr_user', {
+  const response = await axios.get("/user/curr_user", {
     headers: { Authorization: token }
   });
 
@@ -13,10 +13,10 @@ export const currentUser = token => async dispatch => {
   });
 };
 
-export const login = () => async dispatch => {
-  const response = await axios.post('/auth/login', {
-    username: 'amiya-1998',
-    password: 'maruti3315'
+export const login = ({ username, password }) => async dispatch => {
+  const response = await axios.post("/auth/login", {
+    username,
+    password
   });
 
   dispatch({

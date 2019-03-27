@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
 // Create Schema
@@ -25,7 +25,7 @@ const UserSchema = new Schema({
     type: String,
     required: true,
     default:
-      'https://datasciencedegree.wisconsin.edu/wp-content/uploads/2018/09/Not-Availble.jpg'
+      "https://datasciencedegree.wisconsin.edu/wp-content/uploads/2018/09/Not-Availble.jpg"
   },
   password: {
     type: String,
@@ -34,4 +34,4 @@ const UserSchema = new Schema({
   googleId: String
 });
 
-module.exports = mongoose.model('users', UserSchema);
+module.exports = mongoose.model("users", UserSchema);

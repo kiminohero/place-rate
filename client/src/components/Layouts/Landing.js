@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import '../index.css';
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import "../index.css";
 
 class Landing extends Component {
   render() {
     return (
-      <div class="landing">
+      <div className="landing">
         <div className="dark-overlay landing-inner text-light">
           <div className="container">
             <div className="row">
@@ -19,7 +19,7 @@ class Landing extends Component {
                 <Link to="/register" className="btn btn-lg btn-info mr-2">
                   Sign Up
                 </Link>
-                <Link href="/login" className="btn btn-lg btn-light">
+                <Link to="/login" className="btn btn-lg btn-light">
                   Login
                 </Link>
               </div>

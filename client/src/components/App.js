@@ -1,26 +1,18 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
-import { lstat } from 'fs';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+// import { lstat } from 'fs';
 
-import { currentUser, login } from '../actions/index';
+import { currentUser, login } from "../actions/index";
 
-import ListPlace from './Place/ListPlace';
-import Navbar from './Layouts/Navbar';
-import Footer from './Layouts/Footer';
-import Landing from './Layouts/Landing';
-import Register from './Auth/Register';
-import Login from './Auth/Login';
+// import ListPlace from './Place/ListPlace';
+import Navbar from "./Layouts/Navbar";
+import Footer from "./Layouts/Footer";
+import Landing from "./Layouts/Landing";
+import Register from "./Auth/Register";
+import Login from "./Auth/Login";
 
 class App extends Component {
-  componentDidMount() {
-    this.props.login();
-  }
-
-  handleClick = () => {
-    this.props.currentUser(this.props.authToken);
-  };
-
   render() {
     return (
       <Router>
@@ -31,7 +23,6 @@ class App extends Component {
             <Route exact path="/register" component={Register} />
             <Route exact path="/login" component={Login} />
           </div>
-          {/* <button onClick={this.handleClick}>Get Current Logged In user</button> */}
           <Footer />
         </div>
       </Router>
